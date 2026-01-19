@@ -2,11 +2,9 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# ---------------- PAGE CONFIG ----------------
 st.set_page_config(page_title="Road Accident Analysis", layout="wide")
 st.title("🚦 Road Accident Analysis – Milestone 3")
 
-# ---------------- LOAD DATA ----------------
 df = pd.read_csv("US_Accidents_March23.csv")
 
 # Fix datetime issue
@@ -14,7 +12,6 @@ df['Start_Time_clean'] = df['Start_Time'].astype(str).str.split('.').str[0]
 df['datetime'] = pd.to_datetime(df['Start_Time_clean'])
 df['Hour'] = df['datetime'].dt.hour
 
-# ---------------- WEEK 5 ----------------
 st.header("📍 Week 5: Geospatial Analysis")
 
 st.subheader("Accident Hotspots (Latitude vs Longitude)")
@@ -34,7 +31,7 @@ plt.ylabel("Number of Accidents")
 plt.title("Top 5 States")
 st.pyplot(fig2)
 
-# ---------------- WEEK 6 ----------------
+
 st.header("📊 Week 6: Insights & Hypothesis Testing")
 
 st.subheader("Accidents by Time of Day")
@@ -55,5 +52,5 @@ st.subheader("Correlation: Visibility vs Severity")
 correlation = df[['Visibility(mi)', 'Severity']].corr()
 st.write(correlation)
 
-# ---------------- CONCLUSION ----------------
+
 st.success("Milestone 3 Completed: Geospatial Analysis + Insights Successfully Visualized")
